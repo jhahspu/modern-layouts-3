@@ -1,0 +1,262 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400&display=swap');
+// font-family: 'Noto Sans JP', sans-serif;
+
+@font-face { font-family: Canon; src: url(canon.ttf); }
+
+$main-0: hsla(206, 5%, 4%, 1);
+$main-1: hsla(206, 5%, 14%, 1);
+$main-2: hsla(206, 5%, 24%, 1);
+$main-3: hsla(206, 5%, 34%, 1);
+$main-4: hsla(206, 5%, 44%, 1);
+$main-5: hsla(206, 5%, 54%, 1);
+$main-6: hsla(206, 5%, 64%, 1);
+$main-7: hsla(206, 5%, 74%, 1);
+$main-8: hsla(206, 5%, 84%, 1);
+$main-9: hsla(206, 5%, 94%, 1);
+
+$acc: hsla(184, 66%, 40%, 1);
+$acc-h: hsla(184, 66%, 40%, 0.8);
+
+$text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+$box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+$box-shadow-i: inset -3px -3px 6px rgba(0,0,0,0.3);
+
+$border-help: 2px dashed red;
+
+@mixin container {
+  width: 87%;
+  max-width: 1024px;
+  margin: auto;
+}
+
+@mixin btn {
+  background-color: $acc;
+  color: $main-9;
+  // box-shadow: $box-shadow-i;
+  border-radius: 4px;
+  user-select: none;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  &:hover {
+    filter: brightness(0.8);
+  }
+}
+
+
+*, *::before, *::after {
+  margin: 0; padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  background-color: $main-0;
+  color: $main-9;
+
+  font-size: 18px;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 300;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+  }
+
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3 { font-weight: 300; }
+h1 { font-family: Canon, cursive; }
+h1, h2 { font-size: 2rem; span { font-family: 'Noto Sans JP', sans-serif; } }
+ul { list-style-type: none; }
+p, li { line-height: 1.4; }
+a { display: inline-block; color: currentColor; text-decoration: none; }
+img { max-width: 100%; }
+
+.btn {
+  @include btn();
+}
+.spacer > * + * {
+  margin-top: 1.2rem;
+}
+.logo {
+  user-select: none;
+  font-size: 1.4rem;
+  font-family: Canon, cursive;
+}
+
+header {
+  min-height: 100vh;
+  background: radial-gradient($main-1, $main-0);
+  display: grid;
+  grid-template-rows: 1fr 6fr 10%;
+
+  nav {
+    @include container();
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    padding: 0.5rem 0;
+
+    
+
+    ul {
+      display: flex;
+      li {
+        a {
+          padding: 0.4rem 0.7rem;
+          transition: all 0.2s ease-in-out;
+          &:hover:not(.btn) {
+            color: $main-7;
+          }
+          letter-spacing: 0.1ch;
+        }
+      }
+    }
+  }
+
+  .intro {
+    @include container();
+    // flex: 1;
+    display: grid;
+    place-content: center;
+
+    @media (min-width: 768px) {
+      grid-template-columns: 1fr minmax(5rem, 2fr) 1fr;
+      grid-template-rows: 1fr 4fr ;
+      h1 {
+        grid-column: 1/2;
+        align-self: flex-end;
+        justify-self: flex-end;
+        span {
+          display: block;
+        }
+      }
+      .img {
+        grid-column: 2/3;
+        grid-row: 2/3;
+        display: grid;
+        place-items: center;
+      }
+      .info {
+        grid-column: 3/4;
+        grid-row: 2/3;
+        align-self: flex-end;
+      }
+    }
+
+    
+  }
+}
+
+section {
+
+  &:last-of-type {
+    padding-bottom: 3rem;
+  }
+  
+  &#features{
+    @include container();
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+
+    div {
+
+      div {
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+
+        @media (min-width: 768px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        h3 {
+          padding: 1rem;
+          background-color: $main-5;
+          color: $main-0;
+          box-shadow: $box-shadow;
+          border-radius: 0.5rem;
+          font-size: 1.8rem;
+          text-align: center;
+          span {
+            font-size: 1.2rem;
+            display: block;
+            text-transform: uppercase;
+          }
+        }
+      }
+    }
+  }
+    
+
+  &#accessories {
+    @include container();
+    min-height: 100vh;
+    display: grid;
+
+    div {
+      div {
+        padding: 1rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
+        gap: 1rem;
+        article {
+          display: flex;
+          flex-direction: column;
+          background: $main-8;
+          color: $main-1;
+          border-radius: 0.5rem;
+          text-align: center;
+          overflow: hidden;
+          img {
+            width: 100%;
+          }
+          div {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 1rem;
+
+            h3 {
+              font-size: 1rem;
+              font-weight: 400;
+            }
+            p {
+              font-size: 1rem;
+              font-weight: 300;
+            }
+            .btn {
+              padding: 0.2rem 1rem 0.4rem;
+              font-size: 0.8rem;
+              text-transform: uppercase;
+            }
+          }
+          
+        }
+      }
+    }
+  }
+  
+}
+
+footer {
+  
+  background-color: $main-1;
+  nav {
+    @include container();
+    padding: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    
+    
+
+    h2, ul {
+      // border: $border-help;
+    }
+  }
+  
+}
